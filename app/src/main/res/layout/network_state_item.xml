@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="com.git.example.ntmchau.gitsample.data.source.Status" />
+
+        <variable name="networkState"
+                  type="com.git.example.ntmchau.gitsample.data.source.NetworkState"/>
+
+        <variable name="callback"
+                  type="com.git.example.ntmchau.gitsample.ui.common.RetryCallback"/>
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp">
+        <TextView
+                android:id="@+id/error_msg"
+                app:visibleGone="@{networkState.msg != null}"
+                android:text="@{networkState.msg}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"/>
+        <ProgressBar
+                android:id="@+id/progress_bar"
+                style="?android:attr/progressBarStyle"
+                app:visibleGone="@{networkState.status == Status.RUNNING}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"/>
+        <Button
+                android:id="@+id/retry_button"
+                style="@style/Widget.AppCompat.Button.Colored"
+                app:visibleGone="@{networkState.status == Status.FAILED}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:onClick="@{() -> callback.retry()}"
+                android:text="@string/retry"/>
+    </LinearLayout>
+</layout>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+                name="repository"
+                type="com.git.example.ntmchau.gitsample.data.local.RepoExt"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+        <ImageView
+                android:id="@+id/avatar"
+                app:imageUrl="@{repository.owner.avatarUrl}"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/title"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@android:drawable/ic_menu_gallery"/>
+        <TextView
+                android:id="@+id/title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{repository.repo.fullName}"
+                app:layout_constraintEnd_toStartOf="@+id/avatar"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/avatar"
+                tools:text="this is a post title\n and might be multiple lines"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
